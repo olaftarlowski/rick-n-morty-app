@@ -1,12 +1,11 @@
 import './App.css';
+import FullList from './components/FullList/FullList';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>initialized</h1>
-
-      </header>
+      <h1>initialized</h1>
+      <FullList />
     </div>
   );
 }
