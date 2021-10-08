@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ListItem from "../ListItem/ListItem";
+import Button from "../UI/Button/Button";
 import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
 
 const FullList = () => {
@@ -48,7 +49,7 @@ const FullList = () => {
   };
 
   return (
-    <div>
+    <section>
       <ul>
         {error ? `${error}` : ""}
         {dataItems.map((element) => {
@@ -58,9 +59,11 @@ const FullList = () => {
         })}
       </ul>
       {isLoading && <LoadingSpinner />}
-      <button onClick={loadMorePagesHandler}>Show more results (100)</button>
-      <button onClick={loadAllDataHandler}>Show all results</button>
-    </div>
+      <div>
+      <Button loadMore={loadMorePagesHandler}>Show more results (100)</Button>
+      <Button loadAll={loadAllDataHandler}>Show all results</Button>
+      </div>
+    </section>
   );
 };
 
