@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import Controls from "../Controls/Controls";
 import ListItem from "../ListItem/ListItem";
-import Button from "../UI/Button/Button";
 import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
 import styles from "./FullList.module.css";
 
@@ -16,7 +16,6 @@ const FullList = () => {
     const getCharactersData = async () => {
       setIsLoading(true);
       const apiURL = "https://rickandmortyapi.com/api/character/";
-      //   let apiData = [];
 
       try {
         for (let i = bottomCounterIndicator; i <= pagesToLoad && i <= 34; i++) {
@@ -28,8 +27,6 @@ const FullList = () => {
           setDataItems((el) => {
             return el.concat(data.results);
           });
-          //   apiData = apiData.concat(data.results);
-          //   setDataItems((element) => element.concat(apiData));
         }
       } catch (error) {
         setError(error.message);
@@ -53,31 +50,34 @@ const FullList = () => {
   };
 
   return (
-    <section>
-      <ul className={styles.listWrapper}>
-        {error ? `${error}` : ""}
-        {dataItems.map((element) => {
-          return (
-            <ListItem
-              key={element.id}
-              id={element.id}
-              status={element.status}
-              species={element.species}
-              type={element.type}
-              gender={element.gender}
-              image={element.image}
-              created={element.created}
-              name={element.name}
-            />
-          );
-        })}
-      </ul>
-      {isLoading && <LoadingSpinner />}
-      <div>
-        <Button loadMore={loadMorePagesHandler}>Show more results (100)</Button>
-        <Button loadAll={loadAllDataHandler}>Show all results</Button>
-      </div>
-    </section>
+    <>
+      <section className={styles.contentWrapper}>
+        <Controls
+          loadMore={loadMorePagesHandler}
+          loadAll={loadAllDataHandler}
+        ></Controls>
+
+        <ul className={styles.listWrapper}>
+          {error ? `${error}` : ""}
+          {dataItems.map((element) => {
+            return (
+              <ListItem
+                key={element.id}
+                id={element.id}
+                status={element.status}
+                species={element.species}
+                type={element.type}
+                gender={element.gender}
+                image={element.image}
+                created={element.created}
+                name={element.name}
+              />
+            );
+          })}
+        </ul>
+        {isLoading && <LoadingSpinner />}
+      </section>
+    </>
   );
 };
 
