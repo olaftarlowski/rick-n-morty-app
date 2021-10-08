@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ListItem from '../ListItem/ListItem';
 
 const FullList = () => {
     const [dataItems, setDataItems] = useState([]);
@@ -25,7 +26,7 @@ const FullList = () => {
     const loadMorePagesHandler = () => {
         setBottomCounterIndicator(pagesToLoad + 1);
         setPagesToLoad((state) => {
-            return state + 3;
+            return state + 5;
         });
     };
 
@@ -38,10 +39,10 @@ const FullList = () => {
         <div>
             <ul>
                 {dataItems.map((element) => {
-                    return <li key={element.id}>{element.id}. {element.name}</li>;
+                    return <ListItem key={element.id} id={element.id} name ={element.name}/>
                 })}
             </ul>
-            <button onClick={loadMorePagesHandler}>Show more results ({ })</button>
+            <button onClick={loadMorePagesHandler}>Show more results (100)</button>
             <button onClick={loadAllDataHandler}>Show all results</button>
         </div>
     )
