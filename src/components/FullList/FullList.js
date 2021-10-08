@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import ListItem from "../ListItem/ListItem";
+import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
 
 const FullList = () => {
   const [dataItems, setDataItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const [pagesToLoad, setPagesToLoad] = useState(5);
@@ -10,6 +12,7 @@ const FullList = () => {
 
   useEffect(() => {
     const getCharactersData = async () => {
+        setIsLoading(true);
       const apiURL = "https://rickandmortyapi.com/api/character/";
       let apiData = [];
 
@@ -27,6 +30,7 @@ const FullList = () => {
       }
 
       setDataItems((element) => element.concat(apiData));
+      setIsLoading(false);
     };
     getCharactersData();
   }, [pagesToLoad, bottomCounterIndicator]);
@@ -53,6 +57,7 @@ const FullList = () => {
           );
         })}
       </ul>
+      {isLoading && <LoadingSpinner />}
       <button onClick={loadMorePagesHandler}>Show more results (100)</button>
       <button onClick={loadAllDataHandler}>Show all results</button>
     </div>
