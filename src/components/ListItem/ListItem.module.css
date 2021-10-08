@@ -1,0 +1,68 @@
+.cardItem {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 6px 4px;
+}
+
+.item {
+  background: #008a3c;
+  width: 150px;
+  height: 100%;
+  border: 2px solid transparent;
+  transition: 0.1s ease-in-out;
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.item:hover {
+  border: 2px solid #52ff9e;
+}
+
+.name {
+  font-size: 24px;
+  text-transform: capitalize;
+  color: #e0e0e0;
+}
+.image {
+  margin: 1px;
+}
+
+.item:hover .image {
+  animation: moveimage 1s;
+}
+
+@keyframes moveimage {
+  from {
+    transform: translateX(0px);
+  }
+  10% {
+    transform: translateX(5px);
+  }
+  40% {
+    transform: translateX(-5px);
+  }
+  60% {
+    transform: translateX(5px);
+  }
+  90% {
+    transform: translateX(-5px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .item {
+    width: 130px;
+  }
+
+  .name {
+    font-size: 18px;
+  }
+}

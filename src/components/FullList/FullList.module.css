@@ -1,0 +1,13 @@
+.listWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  justify-items: stretch;
+}
+
+@media only screen and (max-width: 1200px) {
+  .listWrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
