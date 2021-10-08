@@ -1,11 +1,27 @@
 .btnWrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
   position: sticky;
   top: 0;
   width: 100%;
 }
 
 .btnWrapperScroll {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.input {
+  height: 44px;
+  margin: 12px 24px;
+}
+
+@media only screen and (max-width: 768px) {
+  .btnWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .input {
+    width: 80%;
+  }
 }

@@ -11,6 +11,7 @@ const FullList = () => {
 
   const [pagesToLoad, setPagesToLoad] = useState(5);
   const [bottomCounterIndicator, setBottomCounterIndicator] = useState(1);
+  const [getInputValue, setGetInputValue] = useState("");
 
   useEffect(() => {
     const getCharactersData = async () => {
@@ -49,12 +50,17 @@ const FullList = () => {
     setPagesToLoad(34);
   };
 
+  const getInputHandler = (data) => {
+    setGetInputValue(data);
+  };
+
   return (
     <>
       <section className={styles.contentWrapper}>
         <Controls
           loadMore={loadMorePagesHandler}
           loadAll={loadAllDataHandler}
+          getInput={getInputHandler}
         ></Controls>
 
         <ul className={styles.listWrapper}>
