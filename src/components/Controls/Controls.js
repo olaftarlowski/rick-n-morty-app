@@ -22,11 +22,14 @@ const Controls = (props) => {
     scroll ? `${styles.btnWrapperScroll}` : ""
   }`;
 
+  const sortingText = `${props.sortState ? "Sort by ID" : "Sort by name"}`;
+
   return (
     <section className={btnClasses}>
       <div>
         <Button loadMore={props.loadMore}>Show more results (100)</Button>
         <Button loadAll={props.loadAll}>Show all results</Button>
+        <Button sortByName={props.sortByName}>{sortingText}</Button>
       </div>
       <input
         type="text"

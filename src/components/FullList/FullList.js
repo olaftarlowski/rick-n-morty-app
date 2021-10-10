@@ -12,6 +12,7 @@ const FullList = () => {
   const [pagesToLoad, setPagesToLoad] = useState(5);
   const [bottomCounterIndicator, setBottomCounterIndicator] = useState(1);
   const [inputValue, setInputValue] = useState("");
+  const [sortByName, setSortByName] = useState(false);
 
   useEffect(() => {
     const getCharactersData = async () => {
@@ -44,7 +45,6 @@ const FullList = () => {
       return state + 5;
     });
   };
-
   const loadAllDataHandler = () => {
     setBottomCounterIndicator(pagesToLoad + 1);
     setPagesToLoad(34);
@@ -52,6 +52,30 @@ const FullList = () => {
   const getInputHandler = (data) => {
     setInputValue(data);
   };
+  const sortByNameHandler = () => {
+    setSortByName((sortState) => !sortState);
+  };
+  if (sortByName) {
+    dataItems.sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    });
+  } else {
+    dataItems.sort((a, b) => {
+      if (a.id < b.id) {
+        return -1;
+      }
+      if (a.id > b.id) {
+        return 1;
+      }
+      return 0;
+    });
+  }
 
   return (
     <>
@@ -59,6 +83,8 @@ const FullList = () => {
         <Controls
           loadMore={loadMorePagesHandler}
           loadAll={loadAllDataHandler}
+          sortState={sortByName}
+          sortByName={sortByNameHandler}
           getInput={getInputHandler}
         ></Controls>
 
