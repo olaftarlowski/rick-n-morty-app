@@ -10,7 +10,7 @@ const FullList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const [pagesToLoad, setPagesToLoad] = useState(1);
+  const [pagesToLoad, setPagesToLoad] = useState(5);
   const [bottomCounterIndicator, setBottomCounterIndicator] = useState(1);
   const [inputValue, setInputValue] = useState("");
   const [sortByName, setSortByName] = useState(false);
