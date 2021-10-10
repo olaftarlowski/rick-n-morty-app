@@ -11,7 +11,7 @@ const FullList = () => {
 
   const [pagesToLoad, setPagesToLoad] = useState(5);
   const [bottomCounterIndicator, setBottomCounterIndicator] = useState(1);
-  const [getInputValue, setGetInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     const getCharactersData = async () => {
@@ -49,9 +49,8 @@ const FullList = () => {
     setBottomCounterIndicator(pagesToLoad + 1);
     setPagesToLoad(34);
   };
-
   const getInputHandler = (data) => {
-    setGetInputValue(data);
+    setInputValue(data);
   };
 
   return (
@@ -65,21 +64,30 @@ const FullList = () => {
 
         <ul className={styles.listWrapper}>
           {error ? `${error}` : ""}
-          {dataItems.map((element) => {
-            return (
-              <ListItem
-                key={element.id}
-                id={element.id}
-                status={element.status}
-                species={element.species}
-                type={element.type}
-                gender={element.gender}
-                image={element.image}
-                created={element.created}
-                name={element.name}
-              />
-            );
-          })}
+          {dataItems
+            .filter((filtItem) => {
+              if (!inputValue) return true;
+              const lowerCasedInput = inputValue.toLowerCase();
+              return (
+                filtItem.id === inputValue ||
+                filtItem.name.toLowerCase().includes(lowerCasedInput)
+              );
+            })
+            .map((element) => {
+              return (
+                <ListItem
+                  key={element.id}
+                  id={element.id}
+                  status={element.status}
+                  species={element.species}
+                  type={element.type}
+                  gender={element.gender}
+                  image={element.image}
+                  created={element.created}
+                  name={element.name}
+                />
+              );
+            })}
         </ul>
         {isLoading && <LoadingSpinner />}
       </section>
