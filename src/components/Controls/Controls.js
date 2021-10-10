@@ -26,7 +26,7 @@ const Controls = (props) => {
 
   return (
     <section className={btnClasses}>
-      <div>
+      <div className={styles.btnElements}>
         <Button loadMore={props.loadMore}>Show more results (100)</Button>
         <Button loadAll={props.loadAll}>Show all results</Button>
         <Button sortByName={props.sortByName}>{sortingText}</Button>

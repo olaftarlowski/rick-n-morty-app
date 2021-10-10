@@ -8,61 +8,64 @@
 }
 
 .item {
-  background: #008a3c;
+  background: #d4f1f4;
   width: 150px;
   height: 100%;
   border: 2px solid transparent;
   transition: 0.1s ease-in-out;
   border-radius: 16px;
-
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  padding: 2px;
 }
 
 .item:hover {
-  border: 2px solid #52ff9e;
+  border: 2px solid #37d4a0;
 }
 
-.name {
-  font-size: 24px;
+.status {
   text-transform: capitalize;
-  color: #e0e0e0;
 }
-.image {
-  margin: 1px;
-}
-
-.item:hover .image {
-  animation: moveimage 1s;
+.statusDead {
+  color: #850000;
+  font-weight: bold;
 }
 
-@keyframes moveimage {
-  from {
-    transform: translateX(0px);
-  }
-  10% {
-    transform: translateX(5px);
-  }
-  40% {
-    transform: translateX(-5px);
-  }
-  60% {
-    transform: translateX(5px);
-  }
-  90% {
-    transform: translateX(-5px);
-  }
-  to {
-    transform: translateX(0px);
-  }
+.statusAlive {
+  color: #00780c;
+  font-weight: bold;
+}
+img {
+  border-radius: inherit;
+}
+.name {
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  justify-content: center;
+  margin: 4px 0;
+}
+.checkType {
+  text-align: end;
+}
+.type .checkType {
+  display: none;
+}
+.type:after {
+  content: "---";
+}
+.paraName {
+  font-weight: bold;
+}
+p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 @media only screen and (max-width: 768px) {
   .item {
     width: 130px;
-  }
-
-  .name {
-    font-size: 18px;
   }
 }
