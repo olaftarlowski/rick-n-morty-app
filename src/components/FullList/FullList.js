@@ -3,16 +3,20 @@ import Controls from "../Controls/Controls";
 import ListItem from "../ListItem/ListItem";
 import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
 import styles from "./FullList.module.css";
+// import Pagination from "../Pagination/Pagination";
 
 const FullList = () => {
   const [dataItems, setDataItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const [pagesToLoad, setPagesToLoad] = useState(5);
+  const [pagesToLoad, setPagesToLoad] = useState(1);
   const [bottomCounterIndicator, setBottomCounterIndicator] = useState(1);
   const [inputValue, setInputValue] = useState("");
   const [sortByName, setSortByName] = useState(false);
+
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [postsPerPage] = useState(16);
 
   useEffect(() => {
     const getCharactersData = async () => {
@@ -77,6 +81,11 @@ const FullList = () => {
     });
   }
 
+  // // pagination
+  // const indexOfLastPost = currentPage * postsPerPage;
+  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  // const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <>
       <section className={styles.contentWrapper}>
@@ -87,33 +96,40 @@ const FullList = () => {
           sortByName={sortByNameHandler}
           getInput={getInputHandler}
         ></Controls>
-
+        {/* <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={dataItems.length}
+          paginate={paginate}
+        /> */}
         <ul className={styles.listWrapper}>
           {error ? `${error}` : ""}
-          {dataItems
-            .filter((filtItem) => {
-              if (!inputValue) return true;
-              const lowerCasedInput = inputValue.toLowerCase();
-              return (
-                filtItem.id === inputValue ||
-                filtItem.name.toLowerCase().includes(lowerCasedInput)
-              );
-            })
-            .map((element) => {
-              return (
-                <ListItem
-                  key={element.id}
-                  id={element.id}
-                  status={element.status}
-                  species={element.species}
-                  type={element.type}
-                  gender={element.gender}
-                  image={element.image}
-                  created={element.created}
-                  name={element.name}
-                />
-              );
-            })}
+          {
+            dataItems
+              .filter((filtItem) => {
+                if (!inputValue) return true;
+                const lowerCasedInput = inputValue.toLowerCase();
+                return (
+                  filtItem.id === inputValue ||
+                  filtItem.name.toLowerCase().includes(lowerCasedInput)
+                );
+              })
+              .map((element) => {
+                return (
+                  <ListItem
+                    key={element.id}
+                    id={element.id}
+                    status={element.status}
+                    species={element.species}
+                    type={element.type}
+                    gender={element.gender}
+                    image={element.image}
+                    created={element.created}
+                    name={element.name}
+                  />
+                );
+              })
+            // .slice(indexOfFirstPost, indexOfLastPost)
+          }
         </ul>
         {isLoading && <LoadingSpinner />}
       </section>

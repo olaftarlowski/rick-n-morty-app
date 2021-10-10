@@ -1,0 +1,14 @@
+.pagination {
+  display: inline-block;
+}
+
+.pagination button {
+  color: black;
+  float: left;
+  padding: 8px 4px;
+  text-decoration: none;
+}
+
+.pagination button:hover:not(.active) {
+  background-color: #ddd;
+}
